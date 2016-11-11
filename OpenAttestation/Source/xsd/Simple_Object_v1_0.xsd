@@ -1,0 +1,25 @@
+<xs:schema xmlns="http://www.trustedcomputinggroup.org/XML/SCHEMA/Simple_Object_v1_0#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:core="http://www.trustedcomputinggroup.org/XML/SCHEMA/Core_Integrity_v1_0_1#" targetNamespace="http://www.trustedcomputinggroup.org/XML/SCHEMA/Simple_Object_v1_0#" elementFormDefault="qualified" attributeFormDefault="unqualified" version="0.30">
+	<xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsig-core-schema.xsd"/>
+	<xs:import namespace="http://www.trustedcomputinggroup.org/XML/SCHEMA/Core_Integrity_v1_0_1#" schemaLocation="Core_Integrity_Manifest_v1_0_1.xsd"/>
+	<xs:complexType name="ValuesType">
+		<xs:sequence>
+			<xs:element name="Hash" type="core:DigestValueType" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="ID" type="xs:ID" use="optional"/>
+		<xs:attribute name="Name" type="xs:normalizedString" use="optional"/>
+		<xs:attribute name="Type" type="xs:anySimpleType" use="optional"/>
+		<xs:attribute name="Ref" type="xs:anyURI" use="optional"/>
+		<xs:attribute name="Image" type="xs:base64Binary" use="optional"/>
+		<xs:attribute name="LocalRef" type="xs:IDREF" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="SimpleObjectType">
+		<xs:sequence>
+			<xs:element name="CompositeHash" type="core:HashType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="TransformMethod" type="ds:TransformType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="DigestMethods" type="core:DigestMethodType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Objects" type="ValuesType" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="Id" type="xs:ID"/>
+	</xs:complexType>
+	<xs:element name="SimpleObject" type="SimpleObjectType"/>
+</xs:schema>

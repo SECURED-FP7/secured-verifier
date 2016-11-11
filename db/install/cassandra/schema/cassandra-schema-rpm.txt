@@ -1,0 +1,29 @@
+use PackagesDB;
+create column family PackagesHistory
+	with column_type = Super
+	and comparator = 'torsec.ra.cassandra.db.PackagesVersionType'
+	and subcomparator = 'BytesType';
+
+create column family PackagesHistory_test
+	with column_type = Super
+	and comparator = 'torsec.ra.cassandra.db.PackagesVersionType'
+	and subcomparator = 'BytesType';
+
+create column family PackagesHistory_pyunit
+        with column_type = Super
+        and comparator = 'torsec.ra.cassandra.db.PackagesVersionType'
+        and subcomparator = 'BytesType';
+
+create keyspace BodhiDB
+        with strategy_options=[{replication_factor:1}]
+        and placement_strategy = 'org.apache.cassandra.locator.SimpleStrategy';
+use BodhiDB;
+
+create column family Bodhi
+        with column_type = Super
+        and comparator = 'BytesType'
+        and subcomparator = 'BytesType';
+create column family Bodhi2
+        with column_type = Super
+        and comparator = 'BytesType'
+        and subcomparator = 'BytesType';

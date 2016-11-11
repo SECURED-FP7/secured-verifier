@@ -1,0 +1,82 @@
+#!/bin/bash
+#create mles script
+
+ADD_PARM="-a"
+DEL_PARM="-d"
+GET_PARM="-g"
+HOST_PARM="-h"
+HOST_NAME=""
+INFO=""
+PORT=8443
+ShowAnalysisTypeExample()
+{
+  echo "AnalysisType Example:"
+  echo -e "Add AnalysisType example:\n\033[31;49;5;1m bash oat_analysisType -a -h HOSTNAME_OF_OAT-APPRAISER '{\"name\":\"ANALYSIS_NAME\",\"module\":\"MODULE_NAME\",\"version\":VERSION_NUMBER,\"url\":\"SCRIPT_URL\",\"requiredPcrMask\":\"HEX_PCR_MASK\"}' \033[0m"
+  echo -e "Del AnalysisType example:\n\033[31;49;5;1m  bash oat_analysisType -d -h HOSTNAME_OF_OAT-APPRAISER '{\"name\":\"ANALYSIS_NAME\"}'\033[0m"
+  echo -e "Get AnalysisType example:\n\033[31;49;5;1m  bash oat_analysisType -g -h HOSTNAME_OF_OAT-APPRAISER\033[0m"
+}
+
+if [ $# -lt 3 ];then
+  echo "parm num error!"
+  ShowAnalysisTypeExample
+  exit 0
+fi
+
+if [ ! -z $OAT_CERTFILE ] && [ -e $OAT_CERTFILE ];then
+  echo " "
+else
+  OAT_CERTFILE="certfile.cer"
+fi
+
+if [ $2 != $HOST_PARM ];then
+  echo "-h parm error!"
+  ShowAnalysisTypeExample
+  exit 1
+else
+  HOST_NAME="$3"
+fi
+
+if [ $1 == $DEL_PARM ];then
+  INFO="`echo "$4" | awk -F{ '{print $2}'| awk -F} '{print $1}'\
+        | sed 's/\"//g' | sed 's/:/=/g' | sed 's/,/\&/g'| sed 's/ /%20/g' | sed 's/\+/%2B/g'`"
+else
+  INFO="$4"
+fi
+
+addAnalysisType() 
+{
+  curl --cacert $OAT_CERTFILE -H "Content-Type: application/json" \
+       -X POST -d "$INFO" "https://$HOST_NAME:$PORT/WLMService/resources/analysisTypes" 
+}
+
+delAnalysisType()
+{
+  curl --cacert $OAT_CERTFILE \
+        -X DELETE  "https://$HOST_NAME:$PORT/WLMService/resources/analysisTypes?$INFO"  
+}
+
+getAnalysisType()
+{
+  curl --cacert $OAT_CERTFILE \
+        -X GET  "https://$HOST_NAME:$PORT/WLMService/resources/analysisTypes"   | python -mjson.tool
+}
+
+case $1 in
+      $ADD_PARM)
+           echo "add AnalysisType:"
+           addAnalysisType
+      ;;
+      $DEL_PARM)
+           echo "del AnalysisType:"
+           delAnalysisType
+      ;;
+      $GET_PARM)
+           echo "get AnalysisType:"
+           getAnalysisType
+      ;;
+      *)
+      echo "Usage oat_AnalysisTypes {-a|-d|-g}"
+      ShowAnalysisTypeExample
+      exit 3
+esac
+echo -e "\n"

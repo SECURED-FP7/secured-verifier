@@ -1,0 +1,74 @@
+#!/bin/bash
+#submit periodic/async requests
+HOST_PARM="-h"
+ADD_REQUEST="-a"
+DEL_REQUEST="-d"
+GET_RESULT="-g"
+HOST_NAME=""
+INFO=""
+PORT=8443
+ShowPostHostExample()
+{
+   echo -e "PostHost:"
+   echo -e "Add periodic request example:\n\033[31;49;5;1m bash oat_posthosts -a -h HOSTNAME_OF_OAT-APPRAISER '{\"hosts\":[\"HOSTNAME_OF_OAT-CLIENT\"], \"analysisType\":\"ANALYSIS_NAME,ANALYSIS_PARAM;ANALYSIS_NAME\", \"timeThreshold\":\"MILLISECONDS_INTERVAL\", \"expirationTime\":\"TIME_INTERVAL\"}' \033[0m"
+   echo -e "Add asynchronous request example:\n\033[31;49;5;1m bash oat_posthosts -a -h HOSTNAME_OF_OAT-APPRAISER '{\"hosts\":[\"HOSTNAME_OF_OAT-CLIENT\"], \"analysisType\":\"ANALYSIS_NAME,ANALYSIS_PARAM;ANALYSIS_NAME\"}' \033[0m"
+   echo -e "Get attestation result example:\n\033[31;49;5;1m bash oat_posthosts -g -h HOSTNAME_OF_OAT-APPRAISER '{\"requestId\":\"PREV_RECEIVED_ID\", \"lastResult\":\"BOOLEAN_VALUE\"}' \033[0m"
+   echo -e "Remove periodic request example:\n\033[31;49;5;1m bash oat_posthosts -d -h HOSTNAME_OF_OAT-APPRAISER '{\"requestId\":\"PREV_RECEIVED_ID\"}' \033[0m"
+}
+
+if [ $# -lt 4 ];then
+  echo "parm num error!"
+  ShowPostHostExample
+  exit 0
+fi
+
+if [ ! -z $OAT_CERTFILE ] && [ -e $OAT_CERTFILE ];then
+  echo " "
+else
+  OAT_CERTFILE="certfile.cer"
+fi
+
+if [ $2 != $HOST_PARM ];then
+  echo "-h parm error!"
+  ShowPostHostExample
+  exit 1
+else
+  HOST_NAME="$3"
+fi
+
+INFO="$4"
+
+addRequest()
+{
+  curl --cacert $OAT_CERTFILE -H "Content-Type: application/json" \
+        -X POST -d "$INFO" "https://$HOST_NAME:$PORT/AttestationService/resources/PostHosts" 
+}
+
+delRequest()
+{
+  curl --cacert $OAT_CERTFILE -H "Content-Type: application/json" \
+        -X DELETE -d "$INFO" "https://$HOST_NAME:$PORT/AttestationService/resources/PostHosts" 
+}
+
+getResult()
+{
+  curl --cacert $OAT_CERTFILE -H "Content-Type: application/json" \
+        -X GET -d "$INFO" "https://$HOST_NAME:$PORT/AttestationService/resources/PostHosts" 
+}
+
+case $1 in
+      $ADD_REQUEST)
+           addRequest
+      ;;
+      $DEL_REQUEST)
+           delRequest
+      ;;
+      $GET_RESULT)
+           getResult
+      ;;
+      *)
+      echo "Usage oat_posthosts {-a|-g|-d}"
+      ShowMleExample
+      exit 3
+esac
+echo -e "\n"

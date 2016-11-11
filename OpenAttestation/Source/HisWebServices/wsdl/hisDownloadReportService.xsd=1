@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI at http://jax-ws.dev.java.net. RI's version is JAX-WS RI 2.1.7-b01-. --><xs:schema xmlns:tns="http://server.hisWebService.webservices.sal.niarl.gov/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://server.hisWebService.webservices.sal.niarl.gov/">
+
+<xs:element name="fetchReport" type="tns:fetchReport" />
+
+<xs:element name="fetchReportResponse" type="tns:fetchReportResponse" />
+
+<xs:complexType name="fetchReport">
+<xs:sequence>
+<xs:element name="reportId" type="xs:long" minOccurs="0" />
+<xs:element name="partial" type="xs:boolean" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="fetchReportResponse">
+<xs:sequence>
+<xs:element name="reportString" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+</xs:schema>

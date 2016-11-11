@@ -1,0 +1,40 @@
+<html>
+      <head>
+            <META HTTP-EQUIV="refresh" CONTENT="5">
+	      <link rel="stylesheet" type="text/css" href="{{ static_url("css/screen.css") }}" />
+            <title>{% block title %}{{title}}{% end %}</title>
+      </head>
+
+
+  <body>
+
+    <div class="general">
+          {% block general information %}
+          <h1><span style="bold">NED name: {{ CN }}</span></h1>
+          <br>
+          <h1><span style="bold">Required trust level: L{{ LEVEL }}</span></h1>
+          <br>
+          <h1><span style="bold">Received certificate digest (SHA1): {{ DGST }}</span></h1>
+          <br>
+          {% end %}
+    </div>
+
+    <div class="trusted">
+          {% block attestation result %}
+          <p><span style="bold"> Attestation result: {{ TRUST }}</span></p>
+          <p><span style="bold"> Last validated on {{ validate_time }} </span></p>
+          {% end %}
+    </div>
+
+    <img src="{{ static_url("css/img/secured_logo.png")}}" alt="secured_logo" ></img>
+
+    <div class="full">
+          <h2>Details: </h2>
+    {% for i in result %}
+    <li>{{i}} = {{ result[i] }}</li>
+    {% end %}
+    </div>
+
+
+  </body>
+</html>

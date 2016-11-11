@@ -1,0 +1,8 @@
+# Set this variable to the directory path of the RA installation
+RABASEDIR="/srv/ra"
+
+# Set this variable to the directory where packages are downloaded
+TARGETBASEDIR="$RABASEDIR/Packages"
+
+# Set this variable to <IP:port> of the Apache Cassandra database
+CASSANDRAURL="localhost:9160"

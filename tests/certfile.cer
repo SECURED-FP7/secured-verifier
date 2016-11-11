@@ -1,0 +1,56 @@
+CONNECTED(00000003)
+---
+Certificate chain
+ 0 s:/C=US/O=U.S. Government/OU=DoD/CN=verifier
+   i:/C=US/O=U.S. Government/OU=DoD/CN=verifier
+---
+Server certificate
+-----BEGIN CERTIFICATE-----
+MIIDYzCCAkugAwIBAgIJAKE9rSaFjBBRMA0GCSqGSIb3DQEBCwUAMEgxCzAJBgNV
+BAYTAlVTMRgwFgYDVQQKDA9VLlMuIEdvdmVybm1lbnQxDDAKBgNVBAsMA0RvRDER
+MA8GA1UEAwwIdmVyaWZpZXIwHhcNMTQxMjE3MTU0OTQ5WhcNMTYxMjE2MTU0OTQ5
+WjBIMQswCQYDVQQGEwJVUzEYMBYGA1UECgwPVS5TLiBHb3Zlcm5tZW50MQwwCgYD
+VQQLDANEb0QxETAPBgNVBAMMCHZlcmlmaWVyMIIBIjANBgkqhkiG9w0BAQEFAAOC
+AQ8AMIIBCgKCAQEAoqTIktDRjDZhedtMhazpOADcoE8K7iheBDf2lbFqQBP8ZMxP
+v/De0PoGqreuzl3zt1n0EEAfboklwQg8Dchk3HuWsTSYFPu0HXQb5dlGAcsxI1MK
+raSH73O8HBGQkpbb5U8FlVBUKXknGo0ISfde+NeKJ85H7GF1aokGxtbESnffkAvW
+C8UKMvwNZMB+j11ZR90P7maPIEbSKzSRnddUX85Gs5wAB1GhPoBRkIKUvLEGmIxZ
+1hTBqEqwy2Epr+VkecOG41Lx4DNz3U5GRt6cSal3ZpG/5odS6EfJ+BciFeQm5386
+x4m+GtzvuiBK6g2OkHDDb+5LSLqQaxyCh5RD5QIDAQABo1AwTjAdBgNVHQ4EFgQU
+m0ETQm5kXuJrS6VPgyWnqSieyJUwHwYDVR0jBBgwFoAUm0ETQm5kXuJrS6VPgyWn
+qSieyJUwDAYDVR0TBAUwAwEB/zANBgkqhkiG9w0BAQsFAAOCAQEAfJjVsyMIvhR3
+8hhb0Z8EE+AcKzsAQ148ZSbjJHdYKY1UAIkudH9JT50xA9+T7ul7Rq5hBaROZAPb
+Bh27k7hJhe+Lr6jvg04fmvgbvTsIDjhxEUIR1axhtcvgXQHGF2hJf54aVZ8Cib82
+TSih6/4kisKeNnqDMncse0DgWue0aA0ar+LIElhzTkI5es+z75RGjQlge9wIbP+p
+RR0chUiCojxjX1VPkwxxvEa2+YaBQTeDTcoBHBYB1eAOJ/4X/G8Y6SbCgdhXC5qu
+ivrN+ylaWUlARAZfy8wmRXFWf93cHXyx94VWVbmy13I0gUy14im4SDZEmx10KMQm
+dduO20ILdw==
+-----END CERTIFICATE-----
+subject=/C=US/O=U.S. Government/OU=DoD/CN=verifier
+issuer=/C=US/O=U.S. Government/OU=DoD/CN=verifier
+---
+Acceptable client certificate CA names
+/C=US/O=U.S. Government/OU=DoD/CN=verifier
+Server Temp Key: DH, 768 bits
+---
+SSL handshake has read 1716 bytes and written 295 bytes
+---
+New, TLSv1/SSLv3, Cipher is DHE-RSA-AES256-SHA
+Server public key is 2048 bit
+Secure Renegotiation IS supported
+Compression: NONE
+Expansion: NONE
+SSL-Session:
+    Protocol  : TLSv1.2
+    Cipher    : DHE-RSA-AES256-SHA
+    Session-ID: 557F28A53BCE684A5E6ED734DE4959230A243260D16224E671F0FA9A23E89E1B
+    Session-ID-ctx: 
+    Master-Key: 824A7AE2CEB04B1AA3B4DE1CA689FCDB14B2B4FAE1D30C8F6A100156802BDAECD94898CC7FECF537AB66A37165390BC8
+    Key-Arg   : None
+    Krb5 Principal: None
+    PSK identity: None
+    PSK identity hint: None
+    Start Time: 1434396837
+    Timeout   : 300 (sec)
+    Verify return code: 18 (self signed certificate)
+---

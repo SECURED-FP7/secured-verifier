@@ -1,0 +1,62 @@
+/* GLOBAL STYLES */
+* {
+margin:0;
+padding:0;
+font-family: Arial, Helvetica, sans-serif;
+}
+
+html {
+background-color: while;
+}
+
+body {
+/* background-image: url("img/secured_logo.png");*/
+background-repeat: no-repeat;
+background-size: cover;
+}
+
+div.error {
+      position: absolute;
+      top: 80px;
+      left: 200px;
+      width: 2000px;
+      height: 1000px;
+      color:red;
+      font-size: 160%;
+}
+
+
+div.general {
+    position: absolute;
+    top: 80px;
+    width: 1000px;
+    left: 200px;
+    height: 200px;
+    /*border-style: solid;
+    border-width: 5px;*/
+}
+
+div.trusted {
+      position: absolute;
+      left: 200px;
+      top: 350px;
+      color:green;
+      font-size: 300%;
+}
+
+div.full {
+      position: absolute;
+      left: 200px;
+      top: 550px;
+      color:black;
+      font-size: 200%;
+}
+
+img {
+      /*position: fixed;*/
+      position: relative;
+      left: 1000px;
+      /*top: 80px;*/
+      width: 400px;
+      height: 350px;
+}

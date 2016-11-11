@@ -1,0 +1,31 @@
+#!/bin/bash
+
+ShowPcrListToMaskExample()
+{
+  echo "PcrListToMask Example:\n\033[31;49;5;1m bash oat_pcrListToMask \"#|#|#|#|#|#\"\033[0m"
+}
+
+if [ $# -ne 1 ];then
+  echo "parm num error!"
+  ShowPcrListToMaskExample
+  exit 0
+fi
+
+PCR_LIST="$1"
+BIT_MASK=0x00000
+
+OIFS=$IFS
+IFS='|'
+
+for PCR_NUM in $PCR_LIST
+do
+  PCR_NUM=${PCR_NUM//[[:blank:]]/}
+  if [ -n "$PCR_NUM" ]; then
+    SHIFTED_BIT=$(( 0x800000>>$PCR_NUM ))
+    BIT_MASK=$(($BIT_MASK | $SHIFTED_BIT))
+  fi
+done
+
+printf "%X\n" $BIT_MASK
+
+IFS=$OIFS

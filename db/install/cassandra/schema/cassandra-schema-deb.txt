@@ -1,0 +1,15 @@
+use PackagesDB;
+create column family PackagesHistoryDEB
+        with column_type = Super
+        and comparator = 'torsec.ra.cassandra.db.PackagesVersionTypeDEB'
+        and subcomparator = 'BytesType';
+
+create column family PackagesHistoryDEB_test
+        with column_type = Super
+        and comparator = 'torsec.ra.cassandra.db.PackagesVersionTypeDEB'
+        and subcomparator = 'BytesType';
+
+create column family PackagesHistoryDEB_pyunit
+        with column_type = Super
+        and comparator = 'torsec.ra.cassandra.db.PackagesVersionTypeDEB'
+        and subcomparator = 'BytesType';

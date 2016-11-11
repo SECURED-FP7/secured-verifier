@@ -1,0 +1,28 @@
+From 0a317e92fc67fd6171ea1de011b72c77b0074680 Mon Sep 17 00:00:00 2001
+From: Nicola Barresi <nicola.barresi@polito.it>
+Date: Fri, 4 Apr 2014 12:29:45 +0200
+Subject: [PATCH] HisAppraiser: Fixed reading of host name from the report ID
+
+This patch fixes a bug in the reading of the host name from the report
+ID; it was executed not considering host names containing the character
+"-".
+---
+ .../integrityReport/HisReportValidator.java        |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Source/HisAppraiser/src/gov/niarl/hisAppraiser/integrityReport/HisReportValidator.java b/Source/HisAppraiser/src/gov/niarl/hisAppraiser/integrityReport/HisReportValidator.java
+index 62696b3..16202cb 100755
+--- a/Source/HisAppraiser/src/gov/niarl/hisAppraiser/integrityReport/HisReportValidator.java
++++ b/Source/HisAppraiser/src/gov/niarl/hisAppraiser/integrityReport/HisReportValidator.java
+@@ -341,7 +341,7 @@ public class HisReportValidator {
+ 				return;
+ 			}
+ 
+-			String hostName = splittedReportId[0];
++			String hostName = report.getID().split("-[^-]*-[^-]*$")[0];
+ 			AuditLog lastAuditLog = new HisAuditDao().getLastAuditLog(hostName);
+ 
+ 			if (!FIRST_IR && !lastAuditLog.getPcrIMLMask().equals(this.currentPcrIMLMask)) {
+-- 
+1.7.9.5
+

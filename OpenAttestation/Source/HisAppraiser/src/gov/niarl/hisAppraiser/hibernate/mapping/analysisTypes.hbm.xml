@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="gov.niarl.hisAppraiser.hibernate.domain.AnalysisTypes" table="analysis_types">
+		<id name="id" column="id" type="long" unsaved-value="null">
+			<generator class="native" />
+		</id>
+		<property name="name" column="name"/>
+		<property name="module" column="module"/>
+		<property name="version" column="version"/>
+		<property name="URL" column="url"/>
+		<property name="deleted" type="boolean" column="deleted"/>
+		<property name="requiredPcrMask" column="required_pcr_mask"/>
+	</class>
+</hibernate-mapping>

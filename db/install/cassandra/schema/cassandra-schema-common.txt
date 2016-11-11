@@ -1,0 +1,19 @@
+create keyspace PackagesDB
+	with strategy_options=[{replication_factor:1}]
+	and placement_strategy = 'org.apache.cassandra.locator.SimpleStrategy';
+use PackagesDB;
+create column family FilesToPackages
+	with column_type = Super
+	and comparator = 'BytesType'
+	and subcomparator = 'BytesType';
+
+create column family FilesToPackages_test
+	with column_type = Super
+	and comparator = 'BytesType'
+	and subcomparator = 'BytesType';
+
+create column family FilesToPackages_pyunit
+        with column_type = Super
+        and comparator = 'BytesType'
+        and subcomparator = 'BytesType';
+

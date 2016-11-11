@@ -1,0 +1,9 @@
+Requirements: 
+	
+	need to add the verifier ip address into /etc/hosts;
+	need to configure the BASE_DIR parameter in the test script, such that the certificate is reachable for the script.
+
+Dependencies:
+	
+ 	python-requests, python-unittest, python-json
+
